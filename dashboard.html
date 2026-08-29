@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Webhook Relay</title><style>body{font-family:monospace;padding:2rem;background:#090d16;color:#fff;max-width:950px;margin:auto;}.log{background:#1e293b;padding:1rem;margin-bottom:1rem;border-radius:6px;border:1px solid #334155;}pre{background:#0f172a;padding:10px;border-radius:4px;overflow-x:auto;color:#38bdf8;}</style></head>
+<body>
+  <h1>Webhook Ingestion Log</h1>
+  <p>Send POST requests to: <code>http://127.0.0.1:8000/hook/&lt;endpoint_name&gt;/</code></p>
+  <hr style="border-color:#334155;margin:1.5rem 0;">
+  {% for l in logs %}
+    <div class="log">
+      <h3>Target: /hook/{{ l.endpoint_name }}/ | IP: {{ l.source_ip }}</h3>
+      <small style="color:#94a3b8;">{{ l.received_at }}</small>
+      <pre>{{ l.body_data }}</pre>
+    </div>
+  {% empty %}
+    <p>No webhooks recorded yet.</p>
+  {% endfor %}
+</body>
+</html>
